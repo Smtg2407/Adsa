@@ -1,36 +1,41 @@
 class Solution {
-    int[] parent;
+    class DSU{
+        int parent[];
 
-    public int find(int x){
-        if(parent[x] == x){
-           return x; 
+        DSU(int n){
+            parent = new int[n + 1];
+
+            for(int i = 0; i <= n; i++){
+                parent[i] = i;
+            }
         }
-        return parent[x] = find(parent[x]);
-    }
-    public void union(int a, int b){
-        int pa = find(a);
-        int pb = find(b);
+        public int find(int x){
+            if(parent[x] == x) return x;
 
-        if(pa != pb){
-            parent[pb] = pa;
+            return parent[x] = find(parent[x]);
+        }
+        public void union(int a, int b){
+            int pa = find(a);
+            int pb = find(b);
+
+            if(pa != pb){
+                parent[pa] = pb;
+            }
         }
     }
     public int[] findRedundantConnection(int[][] edges) {
         int n = edges.length;
-        parent = new int[n + 1];
+        DSU obj = new DSU(n);
 
-        for(int i = 1; i <= n; i++){
-            parent[i] = i;
-        }
         for(int i = 0; i < edges.length; i++){
 
             int u = edges[i][0];
             int v = edges[i][1];
 
-            if(find(u) == find(v)){
+            if(obj.find(u) == obj.find(v)){
                 return edges[i];
             }
-            union(u, v);
+            obj.union(u, v);
         }
         return new int[0];
     }
