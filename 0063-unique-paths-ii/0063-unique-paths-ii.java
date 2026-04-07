@@ -4,7 +4,7 @@ class Solution {
         if(currRow >= rows || currCol >= cols) return 0;
         if(currRow == rows - 1 && currCol == cols - 1) return 1;
 
-        if(dp[currRow][currCol] != 0) return dp[currRow][currCol];
+        if(dp[currRow][currCol] != null) return dp[currRow][currCol];
         if(obstacleGrid[currRow][currCol] == 1) return 0;
 
         int rightWays = solve(currRow, currCol + 1, rows, cols, dp, obstacleGrid);
