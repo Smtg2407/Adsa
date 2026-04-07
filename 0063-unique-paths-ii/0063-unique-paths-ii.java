@@ -1,5 +1,5 @@
 class Solution {
-    public int solve(int currRow, int currCol, int rows, int cols, int[][] dp,int [][]obstacleGrid){
+    public int solve(int currRow, int currCol, int rows, int cols, Integer[][] dp,int [][]obstacleGrid){
 
         if(currRow >= rows || currCol >= cols) return 0;
         if(currRow == rows - 1 && currCol == cols - 1) return 1;
@@ -19,7 +19,7 @@ class Solution {
 
         if(obstacleGrid[n-1][m-1] == 1) return 0;
 
-        int dp[][] = new int[n][m];
+        Integer dp[][] = new Integer[n][m];
         int ans = solve(0,0,n,m,dp,obstacleGrid);
         return ans;
         
