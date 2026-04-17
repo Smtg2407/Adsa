@@ -1,21 +1,19 @@
 class Solution {
-    public int solve(int currRow, int currCol, int rows, int cols, int dp[][]){
+    public int solve(int currRow, int currCol, int row, int col, int[][] dp){
+        if(currRow >= row || currCol >= col) return 0;
+        if(currRow == row - 1 && currCol == col - 1) return 1;
 
-        if(currRow >= rows|| currCol >= cols) return 0;
-        if(currRow == rows - 1 && currCol == cols - 1) return 1;
         if(dp[currRow][currCol] != 0) return dp[currRow][currCol];
 
+        int right = solve(currRow, currCol + 1, row, col, dp);
+        int down = solve(currRow + 1, currCol, row, col, dp);
 
-        int rightWays = solve(currRow, currCol+1,rows, cols,dp);
-        int downWays = solve(currRow+1, currCol, rows, cols,dp);
-
-        return dp[currRow][currCol] = rightWays + downWays;
+        return dp[currRow][currCol] = right + down;
     }
-    public int uniquePaths(int m, int n) {
-        int dp [][] = new int[m][n];
-
-        int ans =  solve(0,0,m,n,dp);
-        return ans;
     
+    public int uniquePaths(int m, int n) { 
+        int[][] dp = new int[m][n];
+
+        return solve(0,0,m,n,dp);
     }
 }
