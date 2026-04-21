@@ -11,7 +11,7 @@ class Solution {
         }
         return provinces;
     }
-    private static void dfs(int city, int[][] graph, boolean[] visited){
+    public static void dfs(int city, int[][] graph, boolean[] visited){
         visited[city] = true;
         for(int i = 0; i<graph.length; i++){
             if(graph[city][i] == 1 && !visited[i]){
