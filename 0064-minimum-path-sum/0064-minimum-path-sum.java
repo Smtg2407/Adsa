@@ -9,8 +9,6 @@ class Solution {
         int downWays  = solve(currRow + 1, currCol, row, col, dp, grid);
 
         return dp[currRow][currCol] = grid[currRow][currCol] + Math.min(rightWays, downWays);
-
-
     }
     public int minPathSum(int[][] grid) {
         
