@@ -1,33 +1,44 @@
 /**
  * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
- */
+  * public class ListNode {
+   *     int val;
+    *     ListNode next;
+     *     ListNode() {}
+      *     ListNode(int val) { this.val = val; }
+       *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+        * }
+         */
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode number = new ListNode();
-        ListNode res = number;
-        int total =0, carry=0;
-        while(l1 !=null || l2 !=null || carry !=0){
-            total=carry;
-            if(l1 !=null){
-                total += l1.val;
+        ListNode dummy = new ListNode(0);
+        ListNode curr = dummy;
+        int carry = 0;
+
+        while(l1 != null || l2 != null || carry != 0){
+
+            int x = 0;
+            if(l1 != null) {
+                x = l1.val;
+            }
+            int y = 0;
+            if(l2 != null){
+                y = l2.val;
+            }
+
+            int sum = x + y + carry;
+            carry = sum / 10;
+
+            curr.next = new ListNode(sum % 10);
+            curr = curr.next;
+
+            if(l1 != null){
                 l1 = l1.next;
             }
-            if(l2 !=null){
-                total += l2.val;
+            if(l2 != null){
                 l2 = l2.next;
-           }
-           int num = total % 10;
-           carry = total/10;
-           number.next = new ListNode(num);
-           number = number.next;
+            }
+        }
+        return dummy.next;
     }
-    return res.next;
-}
-}
+}       
+    
