@@ -3,8 +3,8 @@ class Solution {
         int maxSum = nums[0];
         int sum = 0;
 
-        for(int i = 0; i < nums.length; i++) {
-            sum += nums[i];
+        for(int num : nums) {
+            sum += num;
 
             if(sum > maxSum){
                 maxSum = sum;
@@ -12,6 +12,7 @@ class Solution {
             if(sum < 0){
                 sum = 0;
             }
+
         }
         return maxSum;
     }
